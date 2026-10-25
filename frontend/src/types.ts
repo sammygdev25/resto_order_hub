@@ -16,6 +16,7 @@ export interface User {
   name: string;
   createdAt: string;
   updatedAt: string;
+  orders?: Order[];
 }
 
 export const UserSchema = z.object({
@@ -34,6 +35,7 @@ export interface Category {
   description: string;
   createdAt: string;
   updatedAt: string;
+  menuItems?: MenuItem[];
 }
 
 export const CategorySchema = z.object({
@@ -56,6 +58,7 @@ export interface MenuItem {
   isAvailable: boolean;
   createdAt: string;
   updatedAt: string;
+  orderItems?: OrderItem[];
 }
 
 export const MenuItemSchema = z.object({
@@ -81,6 +84,7 @@ export interface Order {
   stripePaymentIntentId: string;
   createdAt: string;
   updatedAt: string;
+  items?: OrderItem[];
 }
 
 export const OrderSchema = z.object({
