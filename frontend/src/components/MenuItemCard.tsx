@@ -12,7 +12,7 @@ function MenuItemCard({ item, onAddToCart }: MenuItemCardProps) {
   return (
     <Card className="ds-card">
       <Media
-        src={item.imageUrl ? `/img/${item.imageUrl}` : ''}
+        src={item.imageUrl ? item.imageUrl : ''}
         alt={item.name}
         ratio="wide"
         badge={unavailable ? 'Sold out' : item.category?.name}

@@ -76,7 +76,7 @@ export default function OrderHistoryContent({ orders, loading }: OrderHistoryCon
                     : '—'}
                 </td>
                 <td>{order.items?.length ?? 0} item{(order.items?.length ?? 0) === 1 ? '' : 's'}</td>
-                <td>${Number(order.totalAmount ?? 0).toFixed(2)}</td>
+                <td>${Number(order.totalAmount || 0).toFixed(2)}</td>
                 <td>
                   <Badge tone={statusTone(order.status)}>{order.status}</Badge>
                 </td>

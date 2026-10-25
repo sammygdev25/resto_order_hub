@@ -4,7 +4,7 @@ interface HomeHeroProps {
   imageUrl?: string;
 }
 
-export default function HomeHero({ imageUrl }: HomeHeroProps) {
+export default function HomeHero({ imageUrl = '/img/brand/hero.jpg' }: HomeHeroProps) {
   return (
     <Hero
       eyebrow="Fresh. Fast. Flavorful."

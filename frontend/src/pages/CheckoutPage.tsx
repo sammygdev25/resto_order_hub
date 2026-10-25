@@ -4,7 +4,7 @@ import { api } from '../api';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 import CheckoutHeader from '../components/CheckoutHeader';
-import CheckoutForm from '../components/CheckoutForm';
+import CheckoutForm, { type CheckoutDetails } from '../components/CheckoutForm';
 import CheckoutSummary from '../components/CheckoutSummary';
 import { Alert } from '../components/ui';
 import type { Order } from '../types';
@@ -16,7 +16,7 @@ export default function CheckoutPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (details?: Record<string, unknown>) => {
+  const handleSubmit = async (details?: CheckoutDetails) => {
     if (items.length === 0) {
       setError('Your cart is empty.');
       return;
@@ -27,13 +27,14 @@ export default function CheckoutPage() {
       const payload = {
         totalAmount: total,
         items: items.map((item) => ({
-          menuItemId: item.menuItemId,
+          menuItemId: item.menuItem,
           quantity: item.quantity,
           price: item.menuItem?.price ?? 0,
         })),
         ...details,
       };
-      const order = await api.post<Order>('/orders/', payload);
+      const response = await api.post<Order>('/orders/', payload);
+      const order = response.data;
       clearCart();
       navigate(`/order-confirmation/${order.id}`);
     } catch (err: any) {

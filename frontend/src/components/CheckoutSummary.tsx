@@ -1,6 +1,6 @@
 import { Card, CardBody, CardTitle, Media, Price, Button, Stack } from '../components/ui';
 import { Icon } from '../components/icons';
-import type { CartItem } from '../types';
+import type { CartItem } from '../contexts/CartContext.tsx';
 
 interface CheckoutSummaryProps {
   items: CartItem[];
@@ -22,8 +22,8 @@ export default function CheckoutSummary({ items, total, onSubmit, isProcessing }
             <p className="ds-muted">Your cart is empty.</p>
           ) : (
             items.map((item) => (
-              <div className="ds-between" key={item.menuItemId}>
-                <Stack gap="sm" align="center" style={{ flexDirection: 'row' }}>
+              <div className="ds-between" key={item.menuItem.id}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <Media
                     src={item.menuItem?.imageUrl}
                     alt={item.menuItem?.name ?? 'Menu item'}
@@ -33,7 +33,7 @@ export default function CheckoutSummary({ items, total, onSubmit, isProcessing }
                     <div>{item.menuItem?.name ?? 'Item'}</div>
                     <span className="ds-small ds-muted">Qty {item.quantity}</span>
                   </div>
-                </Stack>
+                </div>
                 <Price value={(item.menuItem?.price ?? 0) * item.quantity} />
               </div>
             ))

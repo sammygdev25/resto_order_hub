@@ -1,4 +1,5 @@
 import type { Order } from '../types';
+import { Link } from 'react-router-dom';
 import OrderCard from './OrderCard';
 import { EmptyState, Stack } from './ui';
 
@@ -13,7 +14,7 @@ function OrderHistoryList({ orders }: OrderHistoryListProps) {
         icon="package"
         title="No orders yet"
         text="Once you place an order from our menu, it will show up here with its status and receipt."
-        action={{ label: 'Browse the menu', to: '/menu-items' }}
+        action={<Link to="/menu-items">Browse the menu</Link>}
       />
     );
   }

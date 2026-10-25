@@ -33,10 +33,10 @@ export default function OrderConfirmationFacts({ order }: OrderConfirmationFacts
       <Grid cols={2} size="sm">
         <Card>
           <CardBody>
-            <Stack-like-header>
+            <div className="ds-cluster">
               <Icon name="package" size={18} />
               <strong>Status</strong>
-            </Stack-like-header>
+            </div>
             <Badge tone={statusTone(order.status)}>{order.status}</Badge>
           </CardBody>
         </Card>

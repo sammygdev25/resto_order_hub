@@ -44,7 +44,7 @@ function CartItemRow({ item, onUpdateQuantity, onRemove }: CartItemRowProps) {
       </div>
 
       <div style={{ minWidth: '80px', textAlign: 'right', fontWeight: 600, color: 'var(--color-primary)' }}>
-        ${lineTotal.toFixed(2)}
+        ${Number(lineTotal || 0).toFixed(2)}
       </div>
 
       <Button

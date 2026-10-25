@@ -43,17 +43,17 @@ export default function MenuItemListGrid({ items, loading, onAddToCart, onClearF
         {items.map((item) => (
           <Card key={item.id}>
             <Media
-              src={item.image_url}
+              src={item.imageUrl}
               alt={item.name}
               ratio="wide"
-              badge={!item.is_available ? 'Sold out' : undefined}
+              badge={!item.isAvailable ? 'Sold out' : undefined}
             />
             <CardBody>
               <CardTitle>{item.name}</CardTitle>
               {item.description && <CardMeta>{item.description}</CardMeta>}
               <CardFooter>
                 <Price value={item.price} />
-                {item.is_available ? (
+                {item.isAvailable ? (
                   <Button variant="primary" onClick={() => onAddToCart(item)}>
                     <Icon name="cart" size={16} /> Add to cart
                   </Button>

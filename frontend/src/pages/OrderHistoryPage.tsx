@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { getOrderList } from '../api';
-import type { Order } from '../types';
+import type { Order, User as ApiUser } from '../types';
 import OrderHistoryHeader from '../components/OrderHistoryHeader';
 import OrderHistoryContent from '../components/OrderHistoryContent';
 import OrderHistoryDetails from '../components/OrderHistoryDetails';
@@ -29,11 +29,22 @@ export default function OrderHistoryPage() {
 
   const totalSpent = orders.reduce((sum, order) => sum + Number(order.totalAmount || 0), 0);
 
+  const detailsUser: ApiUser | null = user
+    ? {
+        id: user.id,
+        email: user.email,
+        password: '',
+        name: user.name ?? user.username,
+        createdAt: '',
+        updatedAt: '',
+      }
+    : null;
+
   return (
     <div className="ds-stack-lg">
-      <OrderHistoryHeader userName={user?.name} userEmail={user?.email} />
+      <OrderHistoryHeader userName={user?.name ?? undefined} userEmail={user?.email} />
       <OrderHistoryContent orders={orders} loading={loading} />
-      <OrderHistoryDetails user={user} totalOrders={orders.length} totalSpent={totalSpent} />
+      <OrderHistoryDetails user={detailsUser} totalOrders={orders.length} totalSpent={totalSpent} />
     </div>
   );
 }

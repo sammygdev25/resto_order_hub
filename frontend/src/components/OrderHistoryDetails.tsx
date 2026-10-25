@@ -37,7 +37,7 @@ export default function OrderHistoryDetails({ user, totalOrders, totalSpent }: O
             <span className="ds-label">
               <Icon name="dollar" size={14} /> Total spent
             </span>
-            <p>${totalSpent.toFixed(2)}</p>
+            <p>${Number(totalSpent || 0).toFixed(2)}</p>
           </div>
         </div>
         <p className="ds-help">

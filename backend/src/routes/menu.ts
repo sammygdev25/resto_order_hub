@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { z } from 'zod';
 import prisma from '../database';
-import { authMiddleware, AuthRequest } from '../middleware/auth';
+import { authMiddleware, AuthRequest, requireStaff } from '../middleware/auth';
 
 const router = Router();
 
@@ -37,7 +37,7 @@ router.get('/categories', async (req: Request, res: Response) => {
 });
 
 // POST /api/categories/ (authenticated)
-router.post('/categories', authMiddleware, async (req: AuthRequest, res: Response) => {
+router.post('/categories', authMiddleware, requireStaff, async (req: AuthRequest, res: Response) => {
   const parsed = createCategorySchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: 'Invalid body', code: 'validation_error', issues: parsed.error.issues });
@@ -100,7 +100,7 @@ router.get('/menu-items/:id', async (req: Request, res: Response) => {
 });
 
 // POST /api/menu-items/ (authenticated)
-router.post('/menu-items', authMiddleware, async (req: AuthRequest, res: Response) => {
+router.post('/menu-items', authMiddleware, requireStaff, async (req: AuthRequest, res: Response) => {
   const parsed = createMenuItemSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: 'Invalid body', code: 'validation_error', issues: parsed.error.issues });
