@@ -29,6 +29,15 @@
       "timestamp": "2026-10-25T16:36:48.394983+00:00",
       "files_changed": 36,
       "generation_id": 1
+    },
+    {
+      "version": "1.0",
+      "phase": "integration",
+      "commit_hash": "ca5ac8c",
+      "message": "wiring + imports resolved",
+      "timestamp": "2026-10-25T16:38:32.152510+00:00",
+      "files_changed": 10,
+      "generation_id": 1
     }
   ]
 }
