@@ -2,5 +2,15 @@
   "project_name": "resto_order_hub",
   "current_version": "1.0",
   "current_generation": 1,
-  "versions": []
+  "versions": [
+    {
+      "version": "1.0",
+      "phase": "init",
+      "commit_hash": "ff7b7bb",
+      "message": "Initial project creation - resto_order_hub",
+      "timestamp": "2026-10-25T16:32:33.272180+00:00",
+      "files_changed": 2,
+      "generation_id": 1
+    }
+  ]
 }
